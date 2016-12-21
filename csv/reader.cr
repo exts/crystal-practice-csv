@@ -1,11 +1,9 @@
 
 module Csv
 
-    alias SArray = Array(String)
-
     class Reader
 
-        @data = [] of SArray
+        @data = [] of Array(String)
 
         # construct which initializes the filename & delimiter
         # allowing us to parse the csv file accordingly
@@ -18,7 +16,7 @@ module Csv
         end
 
         # read file data if file exists & split it into string array
-        protected def read_file_lines() : Array(String)
+        private def read_file_lines() : Array(String)
             contents = [] of String
             if File.exists?(@filename)
                 contents = File.read_lines(@filename)
@@ -28,7 +26,7 @@ module Csv
         end
 
         # parse csv data into array and return any matched parts
-        protected def parse_line(line : String) : Array(String)
+        private def parse_line(line : String) : Array(String)
             line = line.strip
 
             # split line into parts based on our delimiter
